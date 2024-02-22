@@ -1,0 +1,79 @@
+
+```{r,eval = False}
+download.file(url="https://bis180ldata.s3.amazonaws.com/downloads/Assignment4/mafft_maxiter100_195v2_op.5.fa",
+              destfile = "output/mafft_maxiter100_195v2_op.5.fa") # use this to put the file in a different directory
+```
+
+```{r,eval = False}
+install.packages("tidyverse")
+install.packages("Biostrings")
+```
+
+```{r,eval = False}
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install(version = "3.18")
+
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("Biostrings")
+BiocManager::install(version = "3.18")
+```
+
+
+```{r,eval = True}
+library(tidyverse)
+library(Biostrings)
+```
+
+
+
+```{r}
+inpath <- "output/mafft_maxiter100_195v2_op.5.fa"
+outpath <- "output/mafft_maxiter100_195v2_op.5_trimmed_75pct.fa"
+alignment <- readDNAMultipleAlignment(inpath)
+alignment
+```
+
+
+```{r}
+alignment <- DNAMultipleAlignment(alignment,start=1000,end=48449)
+
+alignment <- maskGaps(alignment, min.fraction=0.25, min.block.width=1)
+maskedratio(alignment) #what proportion got masked? (rows and columns)
+```
+
+```{r}
+alignment <- alignment %>% as("DNAStringSet") 
+
+#write(alignment,file ="output/test.fa")
+#alignment <- "output/test.fa"
+```
+
+```{r}
+newnames <- names(alignment) %>% 
+  tibble(name=.) %>%
+  mutate(name=str_replace_all(name," ","_")) %>% #replace " " with "_" because some programs truncate name at " "
+  separate(name, 
+           into=c("acc", "isolate", "complete", "name", "country", "host"),
+           sep="_?\\|_?") %>%
+  mutate(name=str_replace(name, "Middle_East_respiratory_syndrome-related","MERS"),   # abbreviate
+         name=str_replace(name, "Severe_acute_respiratory_syndrome-related", "SARS"), # abbreviate
+         newname=paste(acc,name,country,host,sep="|")) %>% # select columns for newname
+  pull(newname) #return newname
+```
+
+```{r}
+head(newnames)
+```
+
+```{r}
+names(alignment) <- newnames
+alignment %>% writeXStringSet(outpath)
+```
+
+
+```{bash}
+FastTree -nt -gtr -gamma -out output/mafft_maxiter100_195v2_op.5_trimmed.fasttree.tre output/mafft_maxiter100_195v2_op.5_trimmed_75pct.fa
+```
+
+https://itol.embl.de/

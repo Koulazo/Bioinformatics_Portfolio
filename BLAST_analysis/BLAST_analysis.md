@@ -1,5 +1,5 @@
 # Blast Analysis
-## This project aims to simulate a genomic investigation to identify the probable cause of a respiratory illness. To achieve this, we will conduct BLAST analyses on patient samples, comparing them against a database of known viral genomes.
+## This project aims to simulate a genomic investigation to identify the probable cause of a respiratory illness. To achieve this, we will conduct BLAST analyses on the samples of a single patient, comparing them against a database of known viral genomes.
 ### This project's completion is attributed to my successful completion of the BIS180L course during my attendance at UC Davis. The course materials and resources were provided by Dr. Julin Maloof and can be found on the BIS180L course GitHub page hosted at https://jnmaloof.github.io/BIS180L_web/.
 
 
@@ -18,6 +18,7 @@ gunzip -c Data/patient_viral.txt.gz > Data/patient_viral.txt
 To search the entries of the ncbi_virus_110119_2.txt using BLAST, a database is required.
 
 ```sh
+#Install package
 sudo apt install ncbi-blast+
 
 makeblastdb -in ncbi_virus_110119_2.txt -dbtype nucl
