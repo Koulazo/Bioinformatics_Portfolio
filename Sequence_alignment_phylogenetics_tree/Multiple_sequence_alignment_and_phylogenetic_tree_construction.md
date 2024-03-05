@@ -93,14 +93,4 @@ The phylogenetic tree can be viewed at the in-browser tool [iTol](https://itol.e
 
 # Results
 
-A: What is the sister taxon to Seq_H? (there will be two taxa in this group) What is the host for the virus in this group (provide the Latin and common names)
-hint: if you are having trouble finding Seq H in the tree, search for it using the (Aa) magnifying glass
-* Seq H has SARS Coronavirus within its taxon and Bat Coronavirus and as sister taxa, putting it well within range for the genetic classification of a Coronavirus.
-
-B: Consider Seq_H plus its sister taxa as defining one taxonomic group with three members. Look at the sister taxon of this group (it is a large group). What is a general description for the viruses in this sister group? List at least 3 different hosts found in this group. Give Latin and common names (if there is a common name).
-
-C: Now consider Seq_H plus all of the other taxa used in question B as one taxonomic group. The sister to this group has three members. What are the hosts of this group?
-
-D: Given your above findings, what do you think the host of the most recent common ancestor to the viruses in parts A and B was? (You can answer giving the common name for the general type of organism, e.g. rat, mouse, bat, ape, etc. you do not need to give a precise species).
-
-E: Do you think that Seq_H evolved from a virus with a human host? Why or why not? If not, what did it evolve from?
+Seq H has SARS Coronavirus within its taxon and Bat Coronavirus and as sister taxa, putting it well within range for the genetic classification of a Coronavirus. All of the hosts of these nearby viruses are bats in the Rhinolophus family, making it unlikely that Seq_H evolved from any other host.
